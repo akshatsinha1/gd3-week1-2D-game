@@ -15,19 +15,32 @@ public class playeController : MonoBehaviour
 
     public TMP_Text scoreText;
 
+    float rotationSpeed;
+
    
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rotationSpeed = Random.Range(-15, 15);
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.D))
+        if (rotationSpeed < 5 && rotationSpeed > -5)
         {
-            transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
+            rotationSpeed = Random.Range(-15, 15);
+        }
+
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Translate(moveSpeed * Time.deltaTime, 0, 0,Space.World);
+
+            
         }
 
         if(Input.GetKey(KeyCode.A))
